@@ -5,7 +5,19 @@ from wtforms.validators import DataRequired, length
 
 
 class AskDayForm(FlaskForm):
-    day = DateField('День', format='%Y-%m-%d')
+    day = DateField('Введите дату (формат: ГГГГ-ММ-ДД)', format='%Y-%m-%d')
+    city = StringField('Город', validators=[DataRequired()])
+    submit = SubmitField('Подтвердить')
+
+
+class AskWeekForm(FlaskForm):
+    day = DateField('Введите дату первого дня недели (формат: ГГГГ-ММ-ДД)', format='%Y-%m-%d')
+    city = StringField('Город', validators=[DataRequired()])
+    submit = SubmitField('Подтвердить')
+
+
+class AskMonthForm(FlaskForm):
+    month = StringField('Введите название месяца', validators=[DataRequired()])
     city = StringField('Город', validators=[DataRequired()])
     submit = SubmitField('Подтвердить')
 

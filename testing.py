@@ -10,6 +10,7 @@ day = 0
 month = 1
 year = 1
 id = 1
+
 con = sqlite3.connect('db/base.db')
 cur = con.cursor()
 for i in range(len(data)):
@@ -28,6 +29,3 @@ for i in range(len(data)):
     print(day, month, year)
     cur.execute("""INSERT INTO data VALUES(?,?,?,?,?,?)""", [id, 1, day, month, year, data[i]])
     id += 1
-
-con.commit()
-con.close()

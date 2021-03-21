@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Прогноз на {{ word }}</h1>
+<form class="login_form" method="post" enctype="multipart/form-data">
+    <div class="form-group">
+    {{ form.hidden_tag() }}
+    {{ form.csrf_token }}
+    <p>
+        {{ form.month.label }}<br>
+        {{ form.month(class="form-control") }}<br>
+        {% for error in form.month.errors %}
+            <p class="alert alert-danger" role="alert">
+                {{ error }}
+            </p>
+        {% endfor %}
+    </p>
+        <p>Выберите город<br/>
+            1. Портовый <span style="padding-left:3.4em"> 2. Западный </span><br/></p>
+        {{ form.city(class="form-control") }}<br>
+        {% for error in form.city.errors %}
+            <p class="alert alert-danger" role="alert">
+                {{ error }}
+            </p>
+        {% endfor %}
+    <p>{{ form.submit(type="submit", class="btn btn-primary") }}</p>
+
+    </div>
+</form>
+{% endblock %}

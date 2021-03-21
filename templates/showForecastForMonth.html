@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+{% set arr = ['января', 'февраля', 'марта', 'апреля', 'мая',
+'июня', 'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'] %}
+<h1>Город {{ city }}</h1>
+<div>
+    {%for i in range(0, length)%}
+    <h3>{{ day[i][0] }} {{ arr[day[i][1] - 1]}}: t = {{ t[i] }} °C</h3>
+    {%endfor%}
+    <img src="../static/week.png" alt="lorem">
+</div>
+{%endblock%}
