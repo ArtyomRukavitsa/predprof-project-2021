@@ -16,7 +16,14 @@
         {% endfor %}
     </p>
         <p>Выберите город<br/>
-            1. Портовый <span style="padding-left:3.4em"> 2. Западный </span><br/></p>
+            1. Портовый <span style="padding-left:3.4em"> 2. Лесной </span><br/>
+            3. Западный <span style="padding-left:3.4em"> 4. Садовый</span><br/>
+            5. Научный <span style="padding-left:3.4em"> 6. Полярный </span><br/>
+            7. Курортный <span style="padding-left:3.4em"> 8. Алмазный </span><br/>
+            9. Приморский <span style="padding-left:3.4em"> 10. Северный </span><br/>
+            11. Степной <span style="padding-left:3.4em"> 12. Таежный </span><br/>
+            13. Южный<br/>
+        </p>
         {{ form.city(class="form-control") }}<br>
         {% for error in form.city.errors %}
             <p class="alert alert-danger" role="alert">

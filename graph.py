@@ -35,7 +35,7 @@ def lineplot(x_data, y_data, x_label="", y_label="", title="",
 
 
 def median(year):
-    con = sqlite3.connect("data/base.db")
+    con = sqlite3.connect("db/base.db")
     cur = con.cursor()
     temps = cur.execute(f"SELECT t FROM data WHERE year = {year}").fetchall()
     temps = [el[0] for el in temps]
@@ -47,17 +47,18 @@ def median(year):
     plt.savefig('medians.png')
 
 
-def years_median():
-    con = sqlite3.connect("data/base.db")
+def years_median(city):
+    con = sqlite3.connect("db/base.db", check_same_thread=False)
     cur = con.cursor()
     medians = []
-    for i in range(1,21):
-        temps = cur.execute(f"SELECT t FROM data WHERE year = {i}").fetchall()
-        temps = [el[0] for el in temps]
+    for i in range(1, 21):
+        temps = cur.execute(f"SELECT t FROM data WHERE year = {i} AND id_city = {city}").fetchall()
+        temps = sorted([el[0] for el in temps])
         medians.append(statistics.median(temps))
 
     lineplot(range(1, 21), medians, title='Изменение медианы в одном городе')
-    plt.savefig('year_median.png')
+    plt.savefig('static/year_median.png')
+    con.close()
 
 
 def draw_plot(temps):

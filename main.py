@@ -64,6 +64,7 @@ def forecastForWeek():
     form = AskDayForm()
     if form.validate_on_submit():
         DAYS.clear()
+        T_ARRAY.clear()
         day = form.day.data
         city = form.city.data
         con = sqlite3.connect('db/base.db', check_same_thread=False)
@@ -95,6 +96,7 @@ def forecastForMonth():
     form = AskMonthForm()
     if form.validate_on_submit():
         DAYS.clear()
+        T_ARRAY.clear()
         month = monthArr.index(form.month.data.lower()) + 1
         city = form.city.data
         con = sqlite3.connect('db/base.db', check_same_thread=False)
@@ -136,6 +138,12 @@ def monthResult():
     draw_plot_month(T_ARRAY)
     return render_template('showForecastForMonth.html', title='Прогноз на месяц', city=CITY, day=DAYS,
                            t=T_ARRAY, length=len(DAYS))
+
+
+@app.route('/median/<int:city>')
+def median(city):
+    years_median(city)
+    return render_template('showMedian.html')
 
 
 if __name__ == '__main__':
